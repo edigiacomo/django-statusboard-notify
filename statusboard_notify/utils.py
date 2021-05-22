@@ -29,10 +29,13 @@ def send_notification_mail_for_recipients(recipients, notifications):
 
 
 def send_notification_mail(notifications):
-    send_notification_mail_for_recipients(
-        settings.STATUS_EMAIL_NOTIFY_RECIPIENTS,
-        notifications,
-    )
+    try:
+        send_notification_mail_for_recipients(
+            settings.STATUS_EMAIL_NOTIFY_RECIPIENTS,
+            notifications,
+        )
+    except AttributeError:
+        pass
 
     for recipient in Recipient.objects.all():
         send_notification_mail_for_recipients(
@@ -55,8 +58,8 @@ def send_notification_telegram(notifications):
         pass
 
     try:
-        token = getattr(settings, "STATUS_EMAIL_TELEGRAM_TOKEN")
-        chat_id = getattr(settings, "STATUS_EMAIL_TELEGRAM_CHAT_ID")
+        token = settings.STATUS_EMAIL_TELEGRAM_TOKEN
+        chat_id = settings.STATUS_EMAIL_TELEGRAM_CHAT_ID
     except AttributeError:
         return
 
