@@ -47,7 +47,9 @@ STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS = [
 ]
 ```
 
-From the admin page you can associate an existing user to one or more services.
+From the admin page you can associate an existing user to one or more services:
+
+![screenshot of the admin page](admin-screenshot.png)
 
 ### Telegram notification
 
@@ -63,7 +65,7 @@ In order to enable the Telegram notifications, you have to:
 
 The, add the following variables to your `settings.py`.
 
-```
+```python
 # settings.py
 STATUS_EMAIL_TELEGRAM_TOKEN = "TELEGRAM-TOKEN-FROM-BOTFATHER"
 STATUS_EMAIL_TELEGRAM_CHAT_ID = -1001234567890
