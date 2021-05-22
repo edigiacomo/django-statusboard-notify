@@ -2,7 +2,6 @@
 
 [![Pypi](https://img.shields.io/pypi/v/django-statusboard-notify.svg)](https://pypi.python.org/pypi/django-statusboard-notify/)
 [![codecov](https://codecov.io/gh/edigiacomo/django-statusboard-notify/branch/master/graph/badge.svg)](https://codecov.io/gh/edigiacomo/django-statusboard-notify)
-[![Documentation Status](https://readthedocs.org/projects/django-statusboard-notify/badge/?version=stable)](https://django-statusboard-notify.readthedocs.io/en/stable/?badge=stable)
 
 Utility for [django-statusboard][1] that notifies users about service status
 changes. The notification are sent via email or published in a Telegram channel.
@@ -66,7 +65,7 @@ The, add the following variables to your `settings.py`.
 ```
 # settings.py
 STATUS_EMAIL_TELEGRAM_TOKEN = "TELEGRAM-TOKEN-FROM-BOTFATHER"
-STATUS_EMAIL_TELEGRAM_CHAT_ID = 123456789
+STATUS_EMAIL_TELEGRAM_CHAT_ID = -1001234567890
 ```
 
 ### Configure the notification script
