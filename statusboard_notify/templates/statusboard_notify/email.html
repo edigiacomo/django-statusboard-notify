@@ -1,0 +1,35 @@
+{% load i18n %}
+{% load statusboard %}
+
+<html>
+    <head>
+        <style>
+body {
+    font-family: sans;
+    font-size: 90%;
+    padding: 0.5em;
+}
+h1 {
+    font-size: 110%;
+}
+        </style>
+    </head>
+    <body>
+        <h1>{% trans "Service status updates" %}</h1>
+            {% for notification in notifications %}
+            <li>
+                <strong>{{ notification.service.name }}</strong>
+                {% if notification.from_status is None %}
+                    {% trans "created with status" %}
+                    <em>{{ notification.to_status|service_get_status_display:"" }}</em>
+                {% else %}
+                    {% trans "from status" %}
+                    <em>{{ notification.from_status|service_get_status_display:"" }}</em>
+                    {% trans "to status" %}
+                    <em>{{ notification.to_status|service_get_status_display:"" }}</em>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

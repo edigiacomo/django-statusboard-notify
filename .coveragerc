@@ -1,0 +1,7 @@
+[run]
+source = statusboard_notify/
+omit =
+    statusboard_notify/migrations/*.py
+    statusboard_notify/apps.py
+    statusboard_notify/admin.py
+branch = True
