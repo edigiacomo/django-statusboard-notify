@@ -31,7 +31,7 @@ def send_notification_mail_for_recipients(recipients, notifications):
 def send_notification_mail(notifications):
     try:
         send_notification_mail_for_recipients(
-            settings.STATUS_EMAIL_NOTIFY_RECIPIENTS,
+            settings.STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS,
             notifications,
         )
     except AttributeError:

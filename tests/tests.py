@@ -23,7 +23,7 @@ class TestUtils(TestCase):
         notifications = Notification.objects.all()
         send_notification_mail(notifications)
         self.assertEquals(Notification.objects.count(), 1)
-        self.assertEquals(len(mail.outbox), len(settings.STATUS_EMAIL_NOTIFY_RECIPIENTS))
+        self.assertEquals(len(mail.outbox), len(settings.STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS))
         # Controlla che per ogni mail ci sia almeno un destinatario
         for m in mail.outbox:
             self.assertTrue(len(m.to) > 0)
@@ -40,7 +40,7 @@ class TestCommand(TestCase):
 
         self.assertEquals(len(mail.outbox), 0)
         call_command('send_notifications', stdout=out)
-        self.assertEquals(len(mail.outbox), len(settings.STATUS_EMAIL_NOTIFY_RECIPIENTS))
+        self.assertEquals(len(mail.outbox), len(settings.STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS))
         self.assertTrue(_(SERVICE_STATUSES[2][1]) in mail.outbox[0].body)
         notifications = Notification.objects.all()
         self.assertEquals(notifications.count(), 0)
@@ -68,7 +68,7 @@ class TestRecipient(TestCase):
         self.assertEquals(self.r.notifications().first().service, self.s1)
 
     def test_send_notification_mail(self):
-        with self.settings(STATUS_EMAIL_NOTIFY_RECIPIENTS=[]):
+        with self.settings(STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS=[]):
             self.assertEquals(Notification.objects.all().count(), 1)
             send_notification_mail(Notification.objects.all())
             self.assertEquals(len(mail.outbox), 1)
@@ -78,7 +78,7 @@ class TestRecipient(TestCase):
 
     def test_send_notification_mail_command(self):
         out = StringIO()
-        with self.settings(STATUS_EMAIL_NOTIFY_RECIPIENTS=[]):
+        with self.settings(STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS=[]):
             self.assertEquals(Notification.objects.all().count(), 1)
             call_command('send_notifications', stdout=out)
             self.assertEquals(len(mail.outbox), 1)
@@ -92,7 +92,7 @@ class TestRecipient(TestCase):
         r.save()
         r.services.add(self.s2)
         r.save()
-        with self.settings(STATUS_EMAIL_NOTIFY_RECIPIENTS=[]):
+        with self.settings(STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS=[]):
             # Controlla che venga mandata una mail ma non al destinatario
             # ciccio2@riccio.com, perché non è associato a servizi per cui
             # avviene la notifica via email

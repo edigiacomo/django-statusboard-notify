@@ -41,7 +41,7 @@ the services:
 
 ```python
 # settings.py
-STATUS_EMAIL_NOTIFY_RECIPIENTS = [
+STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS = [
     "admin@localhost.localdomain",
     "anotheradmin@localhost.localdomain",
 ]
