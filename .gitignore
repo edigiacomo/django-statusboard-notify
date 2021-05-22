@@ -1,2 +1,4 @@
 __pycache__
-.coverage
+/.coverage
+/.tox
+/django_statusboard_notify.egg-info
