@@ -55,7 +55,7 @@ From the admin page you can associate an existing user to one or more services:
 
 In order to enable the Telegram notifications, you have to:
 
-1. Create a bot with botfather.
+1. Create a bot with [BotFather](https://telegram.me/botfather).
 2. Create a channel.
 3. Make you bot an admin of your channel.
 4. Go to https://web.telegram.org and open the channel: the URL is something
