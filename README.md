@@ -57,7 +57,7 @@ In order to enable the Telegram notifications, you have to:
 
 1. Create a bot with [BotFather](https://telegram.me/botfather).
 2. Create a channel.
-3. Make you bot an admin of your channel.
+3. Make your bot an admin of your channel.
 4. Go to https://web.telegram.org and open the channel: the URL is something
    like `https://web.telegram.org/#/im?p=c1234567890_1231231231231231231`.
    The channel id is the concatenation of `-100` and the numbers between `c`
