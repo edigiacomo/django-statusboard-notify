@@ -1,10 +1,11 @@
 # encoding: utf-8
+from io import StringIO
+
 from django.test import TestCase
 from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
 from django.utils.translation import gettext as _
-from django.utils.six import StringIO
 
 
 from statusboard.models import Service, ServiceGroup, SERVICE_STATUSES
