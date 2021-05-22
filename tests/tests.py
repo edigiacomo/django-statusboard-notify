@@ -9,8 +9,8 @@ from django.utils.six import StringIO
 
 from statusboard.models import Service, ServiceGroup, SERVICE_STATUSES
 
-from .models import Notification, Recipient
-from .utils import send_notification_mail
+from statusboard_notify.models import Notification, Recipient
+from statusboard_notify.utils import send_notification_mail
 
 
 class TestUtils(TestCase):
@@ -67,7 +67,6 @@ class TestRecipient(TestCase):
         self.assertEquals(self.r.notifications().first().service, self.s1)
 
     def test_send_notification_mail(self):
-        from .utils import send_notification_mail
         with self.settings(STATUS_EMAIL_NOTIFY_RECIPIENTS=[]):
             self.assertEquals(Notification.objects.all().count(), 1)
             send_notification_mail(Notification.objects.all())
@@ -88,7 +87,6 @@ class TestRecipient(TestCase):
             self.assertEquals(Notification.objects.all().count(), 0)
 
     def test_send_notification_mail_empty_recipient(self):
-        from .utils import send_notification_mail
         r = Recipient(email="ciccio2@riccio.com")
         r.save()
         r.services.add(self.s2)

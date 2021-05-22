@@ -1,4 +1,4 @@
-# Copyright (C) 2017 Emanuele Di Giacomo <emanuele@digiacomo.cc>
+# Copyright (C) 2021 Emanuele Di Giacomo <emanuele@digiacomo.cc>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
