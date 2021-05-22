@@ -1,7 +1,7 @@
 # statusboard-notify
 
 [![Pypi](https://img.shields.io/pypi/v/django-statusboard-notify.svg)](https://pypi.python.org/pypi/django-statusboard-notify/)
-[![codecov](https://codecov.io/gh/edigiacomo/django-statusboard-notify/branch/master/graph/badge.svg)](https://codecov.io/gh/edigiacomo/django-statusboard-notify)
+[![codecov](https://codecov.io/gh/edigiacomo/django-statusboard-notify/branch/main/graph/badge.svg)](https://codecov.io/gh/edigiacomo/django-statusboard-notify)
 
 Utility for [django-statusboard][1] that notifies users about service status
 changes. The notification are sent via email or published in a Telegram channel.
@@ -27,6 +27,7 @@ the `with_telegram` extra.
 Add the following applications to your Django projects:
 
 ```python
+# settings.py
 INSTALLED_APPS += [
     'statusboard',
     'statusboard-notify',
