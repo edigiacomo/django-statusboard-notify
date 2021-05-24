@@ -66,4 +66,5 @@ MIDDLEWARE = [
 
 STATIC_URL = '/static/'
 
+STATUSBOARD_NOTIFY_EMAIL_SENDER = ["statusboard@localhost.localdomain"]
 STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS = ['admin@localhost.localdomain']
