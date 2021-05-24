@@ -1,5 +1,6 @@
 # statusboard-notify
 
+[![Build](https://github.com/edigiacomo/django-statusboard-notify/actions/workflows/build.yml/badge.svg)](https://github.com/edigiacomo/django-statusboard-notify/actions/workflows/build.yml)
 [![Pypi](https://img.shields.io/pypi/v/django-statusboard-notify.svg)](https://pypi.python.org/pypi/django-statusboard-notify/)
 [![codecov](https://codecov.io/gh/edigiacomo/django-statusboard-notify/branch/main/graph/badge.svg)](https://codecov.io/gh/edigiacomo/django-statusboard-notify)
 
