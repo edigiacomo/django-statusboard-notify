@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-statusboard-notify 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-24 04:09-0500\n"
+"POT-Creation-Date: 2021-05-24 04:18-0500\n"
 "PO-Revision-Date: 2021-05-20 17:12+02\n"
 "Last-Translator: Emanuele Di Giacomo <emanuele@digiacomo.cc>\n"
 "Language: it\n"
@@ -44,7 +44,7 @@ msgstr "notifica"
 msgid "notifications"
 msgstr "notifiche"
 
-#: templates/statusboard_notify/email.html:18 utils.py:47
+#: templates/statusboard_notify/email.html:18
 msgid "Service status updates"
 msgstr "Aggiornamento sullo status dei servizi"
 
@@ -59,3 +59,7 @@ msgstr "da status"
 #: templates/statusboard_notify/email.html:28
 msgid "to status"
 msgstr "a status"
+
+#: utils.py:47
+msgid "[statusboard] Service status updates"
+msgstr "[statusboard] Aggiornamento sullo status dei servizi"

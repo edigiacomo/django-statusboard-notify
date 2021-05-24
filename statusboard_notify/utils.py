@@ -44,7 +44,7 @@ def send_notification_mail_for_recipients(recipients, notifications):
     try:
         subject = settings.STATUSBOARD_NOTIFY_EMAIL_SUBJECT
     except:
-        subject = "[statusboard] " + _("Service status updates")
+        subject = _("[statusboard] Service status updates")
 
     for recipient in recipients:
         send_mail(subject, plain_msg, sender, [recipient],
