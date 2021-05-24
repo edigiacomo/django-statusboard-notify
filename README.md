@@ -96,7 +96,7 @@ In order to enable the Telegram notifications, you have to:
    The channel id is the concatenation of `-100` and the numbers between `c`
    and `_` (in the example, `1234567890`, then the chat id is `-1001234567890`).
 
-The, add the following variables to your `settings.py`.
+Then add the following variables to your `settings.py`.
 
 ```python
 # settings.py
