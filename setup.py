@@ -10,14 +10,6 @@ def get_version(package):
     return re.search("__version__ = ['\"]([^'\"]+)['\"]", init_py).group(1)
 
 
-def read_md(path):
-    try:
-        import pypandoc
-        return pypandoc.convert(path, 'rst')
-    except ImportError:
-        return open(path).read()
-
-
 version = get_version('statusboard_notify')
 
 setup(
@@ -27,7 +19,8 @@ setup(
     include_package_data=True,
     license='GPLv2+',
     description='Utility for django-statusboard to notify status changes',
-    long_description=read_md('README.md'),
+    long_description=open('README.md').read(),
+    long_description_content_type="text/markdown",
     url='http://github.com/edigiacomo/django-statusboard-notify',
     author='Emanuele Di Giacomo',
     author_email="emanuele@digiacomo.cc",
