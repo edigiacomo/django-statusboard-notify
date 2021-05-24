@@ -72,8 +72,8 @@ def send_notification_telegram(notifications):
         pass
 
     try:
-        token = settings.STATUS_EMAIL_TELEGRAM_TOKEN
-        chat_id = settings.STATUS_EMAIL_TELEGRAM_CHAT_ID
+        token = settings.STATUSBOARD_NOTIFY_TELEGRAM_TOKEN
+        chat_id = settings.STATUSBOARD_NOTIFY_TELEGRAM_CHAT_ID
     except AttributeError:
         return
 
