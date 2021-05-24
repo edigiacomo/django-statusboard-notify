@@ -37,7 +37,7 @@ def send_notification_mail_for_recipients(recipients, notifications):
     try:
         sender = settings.STATUSBOARD_NOTIFY_EMAIL_SENDER
     except AttributeError:
-        pass
+        return
 
     html_msg, plain_msg = render_notification_message(notifications)
 
