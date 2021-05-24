@@ -15,6 +15,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 
 import pypandoc
 
@@ -33,12 +34,20 @@ def send_notification_mail_for_recipients(recipients, notifications):
     if not notifications.exists():
         return
 
+    try:
+        sender = settings.STATUSBOARD_NOTIFY_EMAIL_SENDER
+    except AttributeError:
+        pass
+
     html_msg, plain_msg = render_notification_message(notifications)
 
-    from_email = "statuspage <statuspage@smr.arpa.emr.it>"
-    subject = "[statuspage] Aggiornamento dello stato dei servizi"
+    try:
+        subject = settings.STATUSBOARD_NOTIFY_EMAIL_SUBJECT
+    except:
+        subject = "[statusboard] " + _("Service status updates")
+
     for recipient in recipients:
-        send_mail(subject, plain_msg, from_email, [recipient],
+        send_mail(subject, plain_msg, sender, [recipient],
                   fail_silently=False, html_message=html_msg)
 
 
@@ -86,7 +95,7 @@ def send_notification_telegram(notifications):
 
     bot = telegram.Bot(token=token)
     for notification in notifications:
-        msg = "{} {} è passato da {} a {}".format(
+        msg = "{} {}: status changed from è passato da {} a {}".format(
             status_emoji.get(str(notification.to_status)),
             notification.service.name,
             notification.get_from_status_display(),

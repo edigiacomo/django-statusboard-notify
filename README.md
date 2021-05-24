@@ -37,6 +37,20 @@ INSTALLED_APPS += [
 
 ### Email notification
 
+In order to enable the email notifications, you have to set the sender:
+
+```python
+# settings.py
+STATUSBOARD_NOTIFY_EMAIL_SENDER = "statusboard@localhost.localdomain
+```
+
+You can edit the subject:
+
+```python
+# settings.py
+STATUSBOARD_NOTIFY_EMAIL_SUBJECT = "Mysubject"
+```
+
 You can add a list of recipients that will receive the notifications about all
 the services:
 
