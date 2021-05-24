@@ -31,5 +31,12 @@ h1 {
             </li>
             {% endfor %}
         </ul>
+        {% block footer %}
+        <footer class="footer">
+            <div class="container">
+                <small>Powered by <a href="https://github.com/edigiacomo/django-statusboard">django-statusboard</a></small>
+            </div>
+        </footer>
+        {% endblock %}
     </body>
 </html>

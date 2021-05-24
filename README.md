@@ -44,6 +44,7 @@ In order to enable the email notifications, you have to set the sender:
 STATUSBOARD_NOTIFY_EMAIL_SENDER = "statusboard@localhost.localdomain
 ```
 
+
 You can edit the subject:
 
 ```python
@@ -65,6 +66,23 @@ STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS = [
 From the admin page you can associate an existing user to one or more services:
 
 ![screenshot of the admin page](admin-screenshot.png)
+
+The email is sent in two formats: plain text and html. The email is created
+using the template
+[statusboard_notify/templates/statusboard_notify/email.html](statusboard_notify/templates/statusboard_notify/email.html)
+and then is converted using `pypandoc` to create the plain text version.
+
+It's possibile to customize the footer of the email: create the file
+`templates/statusboard_notify/email.html` that extends the original template:
+
+```
+{% extends "statusboard_notify/email.html" %}
+{% block footer %}
+    <footer class="footer">
+        For more informations please visit <a href="https://localhost.localdomain/status">the statuspage</a>
+    </footer>
+{% endblock %}
+```
 
 ### Telegram notification
 
