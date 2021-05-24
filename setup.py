@@ -26,7 +26,7 @@ setup(
     author_email="emanuele@digiacomo.cc",
     python_requires=">=3.6",
     install_requires=[
-        'django>=2.2', 'django-statusboard',
+        'django>=2.2', 'django-statusboard', 'pypandoc',
     ],
     extras_require={
         'with_telegram': 'python-telegram-bot',
