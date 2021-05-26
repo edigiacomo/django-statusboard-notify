@@ -86,23 +86,26 @@ def send_notification_telegram(notifications):
     except AttributeError:
         return
 
+    bot = telegram.Bot(token=token)
+    for notification in notifications:
+        bot.send_message(chat_id=chat_id,
+                         text=render_notification_telegram(notification),
+                         parse_mode=telegram.ParseMode.MARKDOWN)
+
+
+def render_notification_telegram(notification):
     status_emoji = {
         "0": "\U0001F7E2",  # 🟢
         "1": "\U0001F535",  # 🔵
         "2": "\U0001F7E0",  # 🟠
         "3": "\U0001F534",  # 🔴
     }
-
-    bot = telegram.Bot(token=token)
-    for notification in notifications:
-        msg = _(
-            "%(emoji)s %(name)s changed from %(fromst)s to %(tost)s"
-        ) % {
-            'emoji': status_emoji.get(str(notification.to_status)),
-            'name': notification.service.name,
-            'fromst': notification.get_from_status_display(),
-            'tost': notification.get_to_status_display(),
-        }
-        bot.send_message(chat_id=chat_id,
-                         text=msg,
-                         parse_mode=telegram.ParseMode.MARKDOWN)
+    msg = _(
+        "%(emoji)s **%(name)s** changed from __%(fromst)s__ to __%(tost)s__"
+    ) % {
+        'emoji': status_emoji.get(str(notification.to_status)),
+        'name': notification.service.name,
+        'fromst': notification.get_from_status_display(),
+        'tost': notification.get_to_status_display(),
+    }
+    return msg

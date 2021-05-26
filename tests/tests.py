@@ -11,7 +11,10 @@ from django.utils.translation import gettext as _
 from statusboard.models import Service, ServiceGroup, SERVICE_STATUSES
 
 from statusboard_notify.models import Notification, Recipient
-from statusboard_notify.utils import send_notification_mail
+from statusboard_notify.utils import (
+    send_notification_mail,
+    render_notification_telegram,
+)
 
 
 class TestUtils(TestCase):
@@ -27,6 +30,22 @@ class TestUtils(TestCase):
         # Controlla che per ogni mail ci sia almeno un destinatario
         for m in mail.outbox:
             self.assertTrue(len(m.to) > 0)
+
+    def test_render_notification_telegram(self):
+        s = Service(name="test", status=0)
+        s.save()
+        s.status = 2
+        s.save()
+        n = Notification.objects.first()
+        msg = render_notification_telegram(n)
+        self.assertEquals(
+            msg,
+            "\U0001F7E0 **{}** changed from __{}__ to __{}__".format(
+                s.name,
+                n.get_from_status_display(),
+                n.get_to_status_display(),
+            )
+        )
 
 
 class TestCommand(TestCase):
