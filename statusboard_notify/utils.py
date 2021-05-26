@@ -95,12 +95,14 @@ def send_notification_telegram(notifications):
 
     bot = telegram.Bot(token=token)
     for notification in notifications:
-        msg = "{} {}: status changed from è passato da {} a {}".format(
-            status_emoji.get(str(notification.to_status)),
-            notification.service.name,
-            notification.get_from_status_display(),
-            notification.get_to_status_display(),
-        )
+        msg = _(
+            "%(emoji)s %(name)s changed from %(fromst)s to %(tost)s"
+        ) % {
+            'emoji': status_emoji.get(str(notification.to_status)),
+            'name': notification.service.name,
+            'fromst': notification.get_from_status_display(),
+            'tost': notification.get_to_status_display(),
+        }
         bot.send_message(chat_id=chat_id,
                          text=msg,
                          parse_mode=telegram.ParseMode.MARKDOWN)
