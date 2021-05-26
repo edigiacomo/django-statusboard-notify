@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Fixed telegram translation (again)
+
 ## 0.4.0
 
 - Fixed telegram translation
