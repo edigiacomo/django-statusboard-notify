@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-statusboard-notify 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 01:22-0500\n"
+"POT-Creation-Date: 2021-05-26 23:47-0500\n"
 "PO-Revision-Date: 2021-05-20 17:12+02\n"
 "Last-Translator: Emanuele Di Giacomo <emanuele@digiacomo.cc>\n"
 "Language: it\n"
@@ -65,6 +65,6 @@ msgid "[statusboard] Service status updates"
 msgstr "[statusboard] Aggiornamento sullo status dei servizi"
 
 #: utils.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(emoji)s **%(name)s** changed from __%(fromst)s__ to __%(tost)s__"
 msgstr "%(emoji)s **%(name)s** è passato da __%(fromst)s__ a __%(tost)s__"

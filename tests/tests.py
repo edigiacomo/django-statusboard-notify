@@ -46,6 +46,21 @@ class TestUtils(TestCase):
                 n.get_to_status_display(),
             )
         )
+        with self.settings(
+            LANGUAGE_CODE="it",
+            USE_L10N=True,
+            USE_I18N=True,
+        ):
+            n = Notification.objects.first()
+            msg = render_notification_telegram(n)
+            self.assertEquals(
+                msg,
+                "\U0001F7E0 **{}** è passato da __{}__ a __{}__".format(
+                    s.name,
+                    n.get_from_status_display(),
+                    n.get_to_status_display(),
+                )
+            )
 
 
 class TestCommand(TestCase):

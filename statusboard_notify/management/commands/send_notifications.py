@@ -21,7 +21,6 @@ from statusboard_notify.utils import send_notification_telegram
 
 class Command(BaseCommand):
     help = "Send statusbord notifications"
-    leave_locale_alone = True
 
     def add_arguments(self, parser):
         parser.add_argument('-n', '--dry-run', action="store_true")
