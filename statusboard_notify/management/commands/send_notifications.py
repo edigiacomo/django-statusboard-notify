@@ -28,29 +28,28 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         notifications = Notification.objects.all()
         if not notifications.exists():
+            self.stdout.write("Notification queue is empty")
             return
-        elif kwargs["dry_run"]:
-            self.stdout.write("Invierei la notifica per {} eventi".format(
-                notifications.count()
+
+        for dest, func in (
+            ("telegram", send_notification_telegram),
+            ("email", send_notification_mail),
+        ):
+            self.stdout.write("Sending {} notifications via {}".format(
+                notifications.count(),
+                dest,
             ))
-            self.stdout.write("Eliminerei {} eventi".format(
-                notifications.count()
-            ))
-        else:
+            if not kwargs["dry_run"]:
+                try:
+                    func(notifications)
+                except Exception as e:
+                    self.stderr.write(e)
+
+        self.stdout.write("Removing {} notifications from the queue".format(
+            notifications.count()
+        ))
+        if not kwargs["dry_run"]:
             try:
-                send_notification_telegram(notifications)
+                notifications.delete()
             except Exception as e:
                 self.stderr.write(e)
-
-            try:
-                send_notification_mail(notifications)
-            except Exception as e:
-                self.stderr.write(e)
-
-            self.stdout.write("Inviata la notifica per {} eventi".format(
-                notifications.count()
-            ))
-            self.stdout.write("Eliminazione di {} eventi".format(
-                notifications.count()
-            ))
-            notifications.delete()
