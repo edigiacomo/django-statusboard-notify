@@ -121,6 +121,14 @@ class TestRecipient(TestCase):
             self.assertFalse("test2" in mail.outbox[0].body)
             self.assertEquals(Notification.objects.all().count(), 0)
 
+    def test_send_notification_mail_command_dry_run(self):
+        out = StringIO()
+        with self.settings(STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS=[]):
+            self.assertEquals(Notification.objects.all().count(), 1)
+            call_command('send_notifications', '--dry-run', stdout=out)
+            self.assertEquals(len(mail.outbox), 0)
+            self.assertEquals(Notification.objects.all().count(), 1)
+
     def test_send_notification_mail_empty_recipient(self):
         r = Recipient(email="ciccio2@riccio.com")
         r.save()
