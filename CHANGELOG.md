@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.3
+
+- Support django-statusboard > 0.10.0
+
 ## 0.4.2
 
 - Fixed telegram translation
