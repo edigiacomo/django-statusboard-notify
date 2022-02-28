@@ -21,12 +21,12 @@ h1 {
                 <strong>{{ notification.service.name }}</strong>
                 {% if notification.from_status is None %}
                     {% trans "created with status" %}
-                    <em>{{ notification.to_status|service_get_status_display:"" }}</em>
+                    <em>{{ notification.get_to_status_display }}</em>
                 {% else %}
                     {% trans "from status" %}
-                    <em>{{ notification.from_status|service_get_status_display:"" }}</em>
+                    <em>{{ notification.get_from_status_display }}</em>
                     {% trans "to status" %}
-                    <em>{{ notification.to_status|service_get_status_display:"" }}</em>
+                    <em>{{ notification.get_to_status_display }}</em>
                 {% endif %}
             </li>
             {% endfor %}
