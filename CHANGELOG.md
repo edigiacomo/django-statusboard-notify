@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0
+
+- Telegram notification: service creation message when `Notification.from_status` is None #7
+- Removed Django 3.1 support
+
 ## 0.4.3
 
 - Support django-statusboard > 0.10.0
