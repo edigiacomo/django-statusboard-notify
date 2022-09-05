@@ -100,12 +100,24 @@ def render_notification_telegram(notification):
         "2": "\U0001F7E0",  # 🟠
         "3": "\U0001F534",  # 🔴
     }
-    msg = _(
-        "%(emoji)s **%(name)s** changed from __%(fromst)s__ to __%(tost)s__"
-    ) % {
-        'emoji': status_emoji.get(str(notification.to_status)),
-        'name': notification.service.name,
-        'fromst': notification.get_from_status_display(),
-        'tost': notification.get_to_status_display(),
-    }
+    if notification.from_status:
+        end_msg = _(
+            "changed from __%(fromst)s__ to __%(tost)s__"
+        ) % {
+            'fromst': notification.get_from_status_display(),
+            'tost': notification.get_to_status_display(),
+        }
+    else:
+        end_msg = _(
+            "created with status __%(tost)s__"
+        ) % {
+            'tost': notification.get_to_status_display(),
+        }
+
+    msg = "{emoji} **{name}** {end_msg}".format(
+        emoji=status_emoji.get(str(notification.to_status)),
+        name=notification.service.name,
+        end_msg=end_msg
+    )
+
     return msg
