@@ -100,7 +100,7 @@ def render_notification_telegram(notification):
         "2": "\U0001F7E0",  # 🟠
         "3": "\U0001F534",  # 🔴
     }
-    if notification.from_status:
+    if notification.from_status is not None:
         end_msg = _(
             "changed from __%(fromst)s__ to __%(tost)s__"
         ) % {
