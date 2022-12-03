@@ -23,7 +23,7 @@ class Command(BaseCommand):
     help = "Send statusbord notifications"
 
     def add_arguments(self, parser):
-        parser.add_argument('-n', '--dry-run', action="store_true")
+        parser.add_argument("-n", "--dry-run", action="store_true")
 
     def handle(self, *args, **kwargs):
         notifications = Notification.objects.all()
@@ -35,19 +35,19 @@ class Command(BaseCommand):
             ("telegram", send_notification_telegram),
             ("email", send_notification_mail),
         ):
-            self.stdout.write("Sending {} notifications via {}".format(
-                notifications.count(),
-                dest,
-            ))
+            self.stdout.write(
+                "Sending {} notifications via {}".format(
+                    notifications.count(),
+                    dest,
+                )
+            )
             if not kwargs["dry_run"]:
                 try:
                     func(notifications)
                 except Exception as e:
                     self.stderr.write(e)
 
-        self.stdout.write("Removing {} notifications from the queue".format(
-            notifications.count()
-        ))
+        self.stdout.write("Removing {} notifications from the queue".format(notifications.count()))
         if not kwargs["dry_run"]:
             try:
                 notifications.delete()

@@ -23,6 +23,7 @@ from statusboard.models import Service, SERVICE_STATUSES
 class Recipient(models.Model):
     """Recipient for the notifications. Each recipient can receive
     notifications for a subset of services."""
+
     email = models.EmailField(unique=True, verbose_name="email")
     services = models.ManyToManyField(Service, verbose_name=_("services"))
 
@@ -33,19 +34,20 @@ class Recipient(models.Model):
         return qs.filter(service__in=self.services.all())
 
     class Meta:
-        verbose_name = _('recipient')
-        verbose_name_plural = _('recipients')
+        verbose_name = _("recipient")
+        verbose_name_plural = _("recipients")
 
 
 class Notification(models.Model):
     """Pending notifications."""
+
     service = models.OneToOneField(Service, on_delete=models.deletion.CASCADE)
     from_status = models.IntegerField(choices=SERVICE_STATUSES, null=True, blank=True)
     to_status = models.IntegerField(choices=SERVICE_STATUSES)
 
     class Meta:
-        verbose_name = _('notification')
-        verbose_name_plural = _('notifications')
+        verbose_name = _("notification")
+        verbose_name_plural = _("notifications")
 
 
 @receiver(post_save, sender=Service)
@@ -57,10 +59,7 @@ def update_notification(sender, instance, **kwargs):
     last status: if the service status changes again before the notification is
     sent, this function overwrites the final status.
     """
-    if any([
-        instance._status == instance.status,
-        (instance._status, instance.status) in ((0, 1), (1, 0))
-    ]):
+    if any([instance._status == instance.status, (instance._status, instance.status) in ((0, 1), (1, 0))]):
         # Ignore if the status is unchanged or the change is between 0
         # (operational) and 1 (performance issues).
         return
@@ -77,6 +76,5 @@ def update_notification(sender, instance, **kwargs):
                 n.save()
         except Notification.DoesNotExist:
             # Create the notification if it doesn't exist.
-            n = Notification(service=instance, from_status=instance._status,
-                             to_status=instance.status)
+            n = Notification(service=instance, from_status=instance._status, to_status=instance.status)
             n.save()

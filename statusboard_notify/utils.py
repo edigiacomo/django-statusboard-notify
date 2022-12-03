@@ -47,8 +47,7 @@ def send_notification_mail_for_recipients(recipients, notifications):
         subject = _("[statusboard] Service status updates")
 
     for recipient in recipients:
-        send_mail(subject, plain_msg, sender, [recipient],
-                  fail_silently=False, html_message=html_msg)
+        send_mail(subject, plain_msg, sender, [recipient], fail_silently=False, html_message=html_msg)
 
 
 def send_notification_mail(notifications):
@@ -68,11 +67,13 @@ def send_notification_mail(notifications):
 
 
 def render_notification_message(notifications):
-    html_msg = render_to_string('statusboard_notify/email.html', {
-        'notifications': notifications,
-    })
-    plain_msg = pypandoc.convert_text(html_msg, "markdown_strict",
-                                      format="html")
+    html_msg = render_to_string(
+        "statusboard_notify/email.html",
+        {
+            "notifications": notifications,
+        },
+    )
+    plain_msg = pypandoc.convert_text(html_msg, "markdown_strict", format="html")
     return html_msg, plain_msg
 
 
@@ -88,9 +89,9 @@ def send_notification_telegram(notifications):
 
     bot = telegram.Bot(token=token)
     for notification in notifications:
-        bot.send_message(chat_id=chat_id,
-                         text=render_notification_telegram(notification),
-                         parse_mode=telegram.ParseMode.MARKDOWN)
+        bot.send_message(
+            chat_id=chat_id, text=render_notification_telegram(notification), parse_mode=telegram.ParseMode.MARKDOWN
+        )
 
 
 def render_notification_telegram(notification):
@@ -101,23 +102,17 @@ def render_notification_telegram(notification):
         "3": "\U0001F534",  # 🔴
     }
     if notification.from_status is not None:
-        end_msg = _(
-            "changed from __%(fromst)s__ to __%(tost)s__"
-        ) % {
-            'fromst': notification.get_from_status_display(),
-            'tost': notification.get_to_status_display(),
+        end_msg = _("changed from __%(fromst)s__ to __%(tost)s__") % {
+            "fromst": notification.get_from_status_display(),
+            "tost": notification.get_to_status_display(),
         }
     else:
-        end_msg = _(
-            "created with status __%(tost)s__"
-        ) % {
-            'tost': notification.get_to_status_display(),
+        end_msg = _("created with status __%(tost)s__") % {
+            "tost": notification.get_to_status_display(),
         }
 
     msg = "{emoji} **{name}** {end_msg}".format(
-        emoji=status_emoji.get(str(notification.to_status)),
-        name=notification.service.name,
-        end_msg=end_msg
+        emoji=status_emoji.get(str(notification.to_status)), name=notification.service.name, end_msg=end_msg
     )
 
     return msg
