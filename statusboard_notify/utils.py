@@ -43,7 +43,7 @@ def send_notification_mail_for_recipients(recipients, notifications):
 
     try:
         subject = settings.STATUSBOARD_NOTIFY_EMAIL_SUBJECT
-    except:
+    except AttributeError:
         subject = _("[statusboard] Service status updates")
 
     for recipient in recipients:
