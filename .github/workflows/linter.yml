@@ -1,0 +1,22 @@
+name: Linter
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: Install system dependencies
+        run: pip install tox
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Linter
+        run: tox -e linter
+      - name: Security check
+        run: tox -e security

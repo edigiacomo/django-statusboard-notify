@@ -4,17 +4,8 @@ import re
 from setuptools import find_packages, setup
 
 
-def get_version(package):
-    # Thanks to Tom Christie
-    init_py = open(os.path.join(package, '__init__.py')).read()
-    return re.search("__version__ = ['\"]([^'\"]+)['\"]", init_py).group(1)
-
-
-version = get_version('statusboard_notify')
-
 setup(
     name="django-statusboard-notify",
-    version=version,
     packages=find_packages(include=["statusboard_notify", "statusboard_notify.*"]),
     include_package_data=True,
     license='GPLv2+',
