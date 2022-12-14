@@ -19,7 +19,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt install -y pandoc
-          pip install tox tox-travis flake8 codecov
+          pip install tox codecov
       - name: Setup Python ${{ matrix.python }}
         uses: actions/setup-python@v4
         with:
