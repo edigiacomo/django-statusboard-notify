@@ -23,7 +23,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt install -y pandoc
-          pip install tox codecov
+          pip install tox
       - name: Setup Python ${{ matrix.python }}
         uses: actions/setup-python@v4
         with:
@@ -34,6 +34,3 @@ jobs:
         run: tox -e py-django${{ matrix.django }}
       - name: Run codecov
         uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: false
