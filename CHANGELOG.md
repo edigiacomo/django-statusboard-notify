@@ -1,5 +1,9 @@
 # Changelog
 
+## devel
+
+- Added Django 4.2 support
+
 ## 0.5.0
 
 - Telegram notification: service creation message when `Notification.from_status` is None #7
