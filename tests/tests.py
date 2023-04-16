@@ -25,8 +25,8 @@ class TestUtils(TestCase):
         s.save()
         notifications = Notification.objects.all()
         send_notification_mail(notifications)
-        self.assertEquals(Notification.objects.count(), 1)
-        self.assertEquals(len(mail.outbox), len(settings.STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS))
+        self.assertEqual(Notification.objects.count(), 1)
+        self.assertEqual(len(mail.outbox), len(settings.STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS))
         # Controlla che per ogni mail ci sia almeno un destinatario
         for m in mail.outbox:
             self.assertTrue(len(m.to) > 0)
@@ -38,7 +38,7 @@ class TestUtils(TestCase):
         s.save()
         n = Notification.objects.first()
         msg = render_notification_telegram(n)
-        self.assertEquals(
+        self.assertEqual(
             msg,
             "\U0001F7E0 **{}** changed from __{}__ to __{}__".format(
                 s.name,
@@ -53,7 +53,7 @@ class TestUtils(TestCase):
         ):
             n = Notification.objects.first()
             msg = render_notification_telegram(n)
-            self.assertEquals(
+            self.assertEqual(
                 msg,
                 "\U0001F7E0 **{}** è passato da __{}__ a __{}__".format(
                     s.name,
@@ -72,12 +72,12 @@ class TestCommand(TestCase):
 
         out = StringIO()
 
-        self.assertEquals(len(mail.outbox), 0)
+        self.assertEqual(len(mail.outbox), 0)
         call_command('send_notifications', stdout=out)
-        self.assertEquals(len(mail.outbox), len(settings.STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS))
+        self.assertEqual(len(mail.outbox), len(settings.STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS))
         self.assertTrue(_(SERVICE_STATUSES[2][1]) in mail.outbox[0].body)
         notifications = Notification.objects.all()
-        self.assertEquals(notifications.count(), 0)
+        self.assertEqual(notifications.count(), 0)
 
 
 class TestRecipient(TestCase):
@@ -98,36 +98,36 @@ class TestRecipient(TestCase):
         self.r.save()
 
     def test_recipient_notifications(self):
-        self.assertEquals(self.r.notifications().count(), 1)
-        self.assertEquals(self.r.notifications().first().service, self.s1)
+        self.assertEqual(self.r.notifications().count(), 1)
+        self.assertEqual(self.r.notifications().first().service, self.s1)
 
     def test_send_notification_mail(self):
         with self.settings(STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS=[]):
-            self.assertEquals(Notification.objects.all().count(), 1)
+            self.assertEqual(Notification.objects.all().count(), 1)
             send_notification_mail(Notification.objects.all())
-            self.assertEquals(len(mail.outbox), 1)
-            self.assertEquals(mail.outbox[0].to, ["ciccio@riccio.com"])
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertEqual(mail.outbox[0].to, ["ciccio@riccio.com"])
             self.assertTrue("test1" in mail.outbox[0].body)
             self.assertFalse("test2" in mail.outbox[0].body)
 
     def test_send_notification_mail_command(self):
         out = StringIO()
         with self.settings(STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS=[]):
-            self.assertEquals(Notification.objects.all().count(), 1)
+            self.assertEqual(Notification.objects.all().count(), 1)
             call_command('send_notifications', stdout=out)
-            self.assertEquals(len(mail.outbox), 1)
-            self.assertEquals(mail.outbox[0].to, ["ciccio@riccio.com"])
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertEqual(mail.outbox[0].to, ["ciccio@riccio.com"])
             self.assertTrue("test1" in mail.outbox[0].body)
             self.assertFalse("test2" in mail.outbox[0].body)
-            self.assertEquals(Notification.objects.all().count(), 0)
+            self.assertEqual(Notification.objects.all().count(), 0)
 
     def test_send_notification_mail_command_dry_run(self):
         out = StringIO()
         with self.settings(STATUSBOARD_NOTIFY_EMAIL_RECIPIENTS=[]):
-            self.assertEquals(Notification.objects.all().count(), 1)
+            self.assertEqual(Notification.objects.all().count(), 1)
             call_command('send_notifications', '--dry-run', stdout=out)
-            self.assertEquals(len(mail.outbox), 0)
-            self.assertEquals(Notification.objects.all().count(), 1)
+            self.assertEqual(len(mail.outbox), 0)
+            self.assertEqual(Notification.objects.all().count(), 1)
 
     def test_send_notification_mail_empty_recipient(self):
         r = Recipient(email="ciccio2@riccio.com")
@@ -138,7 +138,7 @@ class TestRecipient(TestCase):
             # Controlla che venga mandata una mail ma non al destinatario
             # ciccio2@riccio.com, perché non è associato a servizi per cui
             # avviene la notifica via email
-            self.assertEquals(Notification.objects.all().count(), 1)
+            self.assertEqual(Notification.objects.all().count(), 1)
             send_notification_mail(Notification.objects.all())
-            self.assertEquals(len(mail.outbox), 1)
-            self.assertNotEquals(mail.outbox[0].to, ["ciccio2@riccio.com"])
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertNotEqual(mail.outbox[0].to, ["ciccio2@riccio.com"])
