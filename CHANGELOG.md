@@ -1,8 +1,9 @@
 # Changelog
 
-## devel
+## 0.6.0
 
 - Added Django 4.2 support
+- RemovedInDjango40Warning: use `gettext_lazy` instead of `ugettext_lazy`
 
 ## 0.5.0
 

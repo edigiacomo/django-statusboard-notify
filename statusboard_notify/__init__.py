@@ -12,7 +12,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 __author__ = "Emanuele Di Giacomo <emanuele@digiacomo.cc>"
 __copyright__ = "Copyright (C) 2021 Emanuele Di Giacomo"
 __license__ = "GPLv2+"
