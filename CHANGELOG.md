@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+
+- Fix error management in `send_notifications` command
+
 ## 0.6.0
 
 - Added Django 4.2 support
