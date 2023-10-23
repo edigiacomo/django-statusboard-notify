@@ -12,7 +12,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-import sys
 import traceback
 
 from django.core.management.base import BaseCommand
@@ -29,8 +28,6 @@ class Command(BaseCommand):
         parser.add_argument("-n", "--dry-run", action="store_true")
 
     def handle(self, *args, **kwargs):
-        exit_status = 0
-
         notifications = Notification.objects.all()
         if not notifications.exists():
             self.stdout.write("Notification queue is empty")
@@ -62,5 +59,3 @@ class Command(BaseCommand):
                 exit_status = 1
                 self.stderr.write("Error removing sent notifications from db")
                 traceback.print_exc(file=self.stderr)
-
-        sys.exit(exit_status)
