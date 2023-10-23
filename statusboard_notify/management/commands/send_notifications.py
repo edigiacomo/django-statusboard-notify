@@ -12,6 +12,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+import sys
+import traceback
+
 from django.core.management.base import BaseCommand
 
 from statusboard_notify.models import Notification
@@ -26,6 +29,8 @@ class Command(BaseCommand):
         parser.add_argument("-n", "--dry-run", action="store_true")
 
     def handle(self, *args, **kwargs):
+        exit_status = 0
+
         notifications = Notification.objects.all()
         if not notifications.exists():
             self.stdout.write("Notification queue is empty")
@@ -44,12 +49,18 @@ class Command(BaseCommand):
             if not kwargs["dry_run"]:
                 try:
                     func(notifications)
-                except Exception as e:
-                    self.stderr.write(e)
+                except Exception:
+                    exit_status = 1
+                    self.stderr.write(f"Error while sending notifications via {dest}")
+                    traceback.print_exc(file=self.stderr)
 
         self.stdout.write("Removing {} notifications from the queue".format(notifications.count()))
         if not kwargs["dry_run"]:
             try:
                 notifications.delete()
-            except Exception as e:
-                self.stderr.write(e)
+            except Exception:
+                exit_status = 1
+                self.stderr.write("Error removing sent notifications from db")
+                traceback.print_exc(file=self.stderr)
+
+        sys.exit(exit_status)
