@@ -12,6 +12,9 @@ changes from "Operational" to "Performance issues" (and viceversa).
 
 ![screenshot of a Telegram channel](telegram-screenshot.png)
 
+**Note** the notification script attempts to send the message *only once for
+each backend*.
+
 ## Installation
 
 Install the package:
