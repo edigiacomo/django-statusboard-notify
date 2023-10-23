@@ -47,7 +47,6 @@ class Command(BaseCommand):
                 try:
                     func(notifications)
                 except Exception:
-                    exit_status = 1
                     self.stderr.write(f"Error while sending notifications via {dest}")
                     traceback.print_exc(file=self.stderr)
 
@@ -56,6 +55,5 @@ class Command(BaseCommand):
             try:
                 notifications.delete()
             except Exception:
-                exit_status = 1
                 self.stderr.write("Error removing sent notifications from db")
                 traceback.print_exc(file=self.stderr)
