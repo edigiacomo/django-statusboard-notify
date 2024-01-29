@@ -38,6 +38,15 @@ INSTALLED_APPS += [
 ]
 ```
 
+## Internationalization and localization
+
+`django-statusboard` supports the following languages:
+
+* English
+* Italian
+
+
+
 ### Email notification
 
 In order to enable the email notifications, you have to set the sender:
