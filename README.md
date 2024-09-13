@@ -23,6 +23,8 @@ Install the package:
 pip install django-statusboard-notify[with_telegram]
 ```
 
+**Note**: this package requires the `pandoc` command installed on your system (see https://pypi.org/project/pypandoc/).
+
 If you don't need Telegram notifications, you can install the package without
 the `with_telegram` extra.
 
