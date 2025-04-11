@@ -1,5 +1,9 @@
 # Changelog
 
+## devel
+
+- Support Django 5.2
+
 ## 0.7.0
 
 - Fix error management in `send_notifications` command
