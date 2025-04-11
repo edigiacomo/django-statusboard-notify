@@ -37,6 +37,18 @@ jobs:
             django: 50
           - python: "3.11"
             django: 51
+          - python: "3.12"
+            django: 51
+          - python: "3.12"
+            django: 42
+          - python: "3.12"
+            django: 50
+          - python: "3.12"
+            django: 51
+          - python: "3.12"
+            django: 52
+          - python: "3.13"
+            django: 52
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
