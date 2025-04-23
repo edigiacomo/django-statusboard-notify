@@ -7,14 +7,10 @@ on:
 jobs:
   build:
     name: Python ${{ matrix.python }} - Django ${{ matrix.django }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-          - django: 32
-            python: "3.6"
-          - django: 32
-            python: "3.7"
           - django: 32
             python: "3.8"
           - django: 32
