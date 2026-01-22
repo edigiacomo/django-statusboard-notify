@@ -96,10 +96,10 @@ def send_notification_telegram(notifications):
 
 def render_notification_telegram(notification):
     status_emoji = {
-        "0": "\U0001F7E2",  # 🟢
-        "1": "\U0001F535",  # 🔵
-        "2": "\U0001F7E0",  # 🟠
-        "3": "\U0001F534",  # 🔴
+        "0": "\U0001f7e2",  # 🟢
+        "1": "\U0001f535",  # 🔵
+        "2": "\U0001f7e0",  # 🟠
+        "3": "\U0001f534",  # 🔴
     }
     if notification.from_status is not None:
         end_msg = _("changed from __%(fromst)s__ to __%(tost)s__") % {
