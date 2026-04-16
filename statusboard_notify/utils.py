@@ -128,5 +128,5 @@ def send_notification_google_chat(notifications):
 
     for notification in notifications:
         requests.post(webhook_url, json={
-            "test": render_notification_markdown(notification)
-        })
+            "text": render_notification_markdown(notification)
+        }).raise_for_status()
