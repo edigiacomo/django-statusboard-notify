@@ -18,6 +18,8 @@ from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 
 import pypandoc
+import requests
+
 
 try:
     telegram = None
