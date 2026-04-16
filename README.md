@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/edigiacomo/django-statusboard-notify/branch/main/graph/badge.svg)](https://codecov.io/gh/edigiacomo/django-statusboard-notify)
 
 Utility for [django-statusboard][1] that notifies users about service status
-changes. The notification are sent via email or published in a Telegram channel.
+changes. The system supports notifications via email, Telegram, and Google Chat.
 
 This app periodically notifies about service status changes - except for
 changes from "Operational" to "Performance issues" (and viceversa).
@@ -119,6 +119,10 @@ STATUSBOARD_NOTIFY_TELEGRAM_TOKEN = "TELEGRAM-TOKEN-FROM-BOTFATHER"
 STATUSBOARD_NOTIFY_TELEGRAM_CHAT_ID = -1001234567890
 ```
 
+### Google Chat notification
+
+To enable the Google Chat notifications, configure the `STATUSBOARD_NOTIFY_GOOGLE_CHAT_WEBHOOK_URL` setting.
+
 ### Configure the notification script
 
 The notifications are fired by command `send_notifications`, that reads the
@@ -135,7 +139,7 @@ an example with `crontab`:
 
 ## Contact and copyright information
 
-Copyright (C) 2021 Emanuele Di Giacomo <emanuele@digiacomo.cc>
+Copyright (C) 2021-2026 Emanuele Di Giacomo <emanuele@digiacomo.cc>
 
 django-statusboard-notify is licensed under GPLv2+.
 

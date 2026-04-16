@@ -90,11 +90,11 @@ def send_notification_telegram(notifications):
     bot = telegram.Bot(token=token)
     for notification in notifications:
         bot.send_message(
-            chat_id=chat_id, text=render_notification_telegram(notification), parse_mode=telegram.ParseMode.MARKDOWN
+            chat_id=chat_id, text=render_notification_markdown(notification), parse_mode=telegram.ParseMode.MARKDOWN
         )
 
 
-def render_notification_telegram(notification):
+def render_notification_markdown(notification):
     status_emoji = {
         "0": "\U0001f7e2",  # 🟢
         "1": "\U0001f535",  # 🔵
@@ -116,3 +116,15 @@ def render_notification_telegram(notification):
     )
 
     return msg
+
+
+def send_notification_google_chat(notifications):
+    try:
+        webhook_url = settings.STATUSBOARD_NOTIFY_GOOGLE_CHAT_WEBHOOK_URL
+    except AttributeError:
+        return
+
+    for notification in notifications:
+        requests.post(webhook_url, json={
+            "test": render_notification_markdown(notification)
+        })

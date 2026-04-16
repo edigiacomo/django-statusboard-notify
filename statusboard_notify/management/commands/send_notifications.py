@@ -19,6 +19,7 @@ from django.core.management.base import BaseCommand
 from statusboard_notify.models import Notification
 from statusboard_notify.utils import send_notification_mail
 from statusboard_notify.utils import send_notification_telegram
+from statusboard_notify.utils import send_notification_google_chat
 
 
 class Command(BaseCommand):
@@ -36,6 +37,7 @@ class Command(BaseCommand):
         for dest, func in (
             ("telegram", send_notification_telegram),
             ("email", send_notification_mail),
+            ("google chat", send_notification_google_chat),
         ):
             self.stdout.write(
                 "Sending {} notifications via {}".format(
