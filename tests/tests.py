@@ -13,7 +13,7 @@ from statusboard.models import Service, ServiceGroup, SERVICE_STATUSES
 from statusboard_notify.models import Notification, Recipient
 from statusboard_notify.utils import (
     send_notification_mail,
-    render_notification_telegram,
+    render_notification_markdown,
 )
 
 
@@ -31,13 +31,13 @@ class TestUtils(TestCase):
         for m in mail.outbox:
             self.assertTrue(len(m.to) > 0)
 
-    def test_render_notification_telegram(self):
+    def test_render_notification_markdown(self):
         s = Service(name="test", status=0)
         s.save()
         s.status = 2
         s.save()
         n = Notification.objects.first()
-        msg = render_notification_telegram(n)
+        msg = render_notification_markdown(n)
         self.assertEqual(
             msg,
             "\U0001F7E0 **{}** changed from __{}__ to __{}__".format(
@@ -52,7 +52,7 @@ class TestUtils(TestCase):
             USE_I18N=True,
         ):
             n = Notification.objects.first()
-            msg = render_notification_telegram(n)
+            msg = render_notification_markdown(n)
             self.assertEqual(
                 msg,
                 "\U0001F7E0 **{}** è passato da __{}__ a __{}__".format(
