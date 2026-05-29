@@ -20,7 +20,6 @@ from django.utils.translation import gettext_lazy as _
 import pypandoc
 import requests
 
-
 try:
     telegram = None
     import telegram
@@ -127,6 +126,4 @@ def send_notification_google_chat(notifications):
         return
 
     for notification in notifications:
-        requests.post(webhook_url, json={
-            "text": render_notification_markdown(notification)
-        }).raise_for_status()
+        requests.post(webhook_url, json={"text": render_notification_markdown(notification)}).raise_for_status()
