@@ -2,6 +2,8 @@
 
 ## devel
 
+## 0.8.0
+
 - Support Django 5.2
 - Supporto Django 6.0
 - Google Chat notifications
