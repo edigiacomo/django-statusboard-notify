@@ -17,7 +17,7 @@ setup(
     author_email="emanuele@digiacomo.cc",
     python_requires=">=3.6",
     install_requires=[
-        'django>=2.2', 'django-statusboard', 'pypandoc',
+        'django>=2.2', 'django-statusboard', 'pypandoc', 'requests',
     ],
     extras_require={
         'with_telegram': 'python-telegram-bot',
@@ -32,6 +32,8 @@ setup(
         'Framework :: Django :: 3.2',
         'Framework :: Django :: 4.2',
         'Framework :: Django :: 5.0',
+        'Framework :: Django :: 5.2',
+        'Framework :: Django :: 6.0',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
