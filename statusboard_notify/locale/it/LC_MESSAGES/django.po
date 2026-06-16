@@ -2,12 +2,11 @@
 # This file is distributed under the same license as the django-statusboard-notify package.
 # Emanuele Di Giacomo <emanuele@digiacomo.cc>, 2021
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: django-statusboard-notify 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 08:44-0500\n"
+"POT-Creation-Date: 2026-06-16 16:19+0200\n"
 "PO-Revision-Date: 2021-05-20 17:12+02\n"
 "Last-Translator: Emanuele Di Giacomo <emanuele@digiacomo.cc>\n"
 "Language: it\n"
@@ -16,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:26
+#: admin.py:27
 msgid "service list"
 msgstr "lista dei servizi"
 
@@ -24,52 +23,52 @@ msgstr "lista dei servizi"
 msgid "statusboard notifier"
 msgstr "notificatore per statusboard"
 
-#: models.py:27
+#: models.py:28
 msgid "services"
 msgstr "servizi"
 
-#: models.py:36
+#: models.py:37
 msgid "recipient"
 msgstr "destinatario"
 
-#: models.py:37
+#: models.py:38
 msgid "recipients"
 msgstr "destinatari"
 
-#: models.py:47
+#: models.py:49
 msgid "notification"
 msgstr "notifica"
 
-#: models.py:48
+#: models.py:50
 msgid "notifications"
 msgstr "notifiche"
 
-#: templates/statusboard_notify/email.html:18
+#: templates/statusboard_notify/email.html:19
 msgid "Service status updates"
 msgstr "Aggiornamento sullo status dei servizi"
 
-#: templates/statusboard_notify/email.html:23
+#: templates/statusboard_notify/email.html:25
 msgid "created with status"
 msgstr "creato con status"
 
-#: templates/statusboard_notify/email.html:26
+#: templates/statusboard_notify/email.html:28
 msgid "from status"
 msgstr "da status"
 
-#: templates/statusboard_notify/email.html:28
+#: templates/statusboard_notify/email.html:30
 msgid "to status"
 msgstr "a status"
 
-#: utils.py:47
+#: utils.py:48
 msgid "[statusboard] Service status updates"
 msgstr "[statusboard] Aggiornamento sullo status dei servizi"
 
-#: utils.py:105
-#, python-format
-msgid "changed from __%(fromst)s__ to __%(tost)s__"
-msgstr "è passato da __%(fromst)s__ a __%(tost)s__"
+#: utils.py:109
+#| msgid "changed from __%(fromst)s__ to __%(tost)s__"
+msgid "changed from %(fromst)s to %(tost)s"
+msgstr "è passato da %(fromst)s a %(tost)s"
 
-#: utils.py:112
-#, python-format
-msgid "created with status __%(tost)s__"
-msgstr "creato con status __%(tost)s__"
+#: utils.py:114
+#| msgid "created with status __%(tost)s__"
+msgid "created with status %(tost)s"
+msgstr "creato con status %(tost)s"
