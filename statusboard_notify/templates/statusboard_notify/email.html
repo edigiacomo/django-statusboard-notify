@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load statusboard %}
+{% load statusboard_notify %}
 
 <html>
     <head>
@@ -18,6 +19,7 @@ h1 {
         <h1>{% trans "Service status updates" %}</h1>
             {% for notification in notifications %}
             <li>
+                {{ notification | statusboard_notify_status_emoji }}
                 <strong>{{ notification.service.name }}</strong>
                 {% if notification.from_status is None %}
                     {% trans "created with status" %}
