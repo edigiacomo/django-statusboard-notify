@@ -40,7 +40,7 @@ class TestUtils(TestCase):
         msg = render_notification_markdown(n)
         self.assertEqual(
             msg,
-            "\U0001F7E0 **{}** changed from __{}__ to __{}__".format(
+            "\U0001F7E0 {} changed from {} to {}".format(
                 s.name,
                 n.get_from_status_display(),
                 n.get_to_status_display(),
@@ -55,7 +55,7 @@ class TestUtils(TestCase):
             msg = render_notification_markdown(n)
             self.assertEqual(
                 msg,
-                "\U0001F7E0 **{}** è passato da __{}__ a __{}__".format(
+                "\U0001F7E0 {} è passato da {} a {}".format(
                     s.name,
                     n.get_from_status_display(),
                     n.get_to_status_display(),
