@@ -2,6 +2,10 @@
 
 ## devel
 
+## 0.8.2
+
+- Add emoji to email notifications
+
 ## 0.8.0
 
 - Support Django 5.2
