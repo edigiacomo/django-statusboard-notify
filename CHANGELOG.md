@@ -2,6 +2,10 @@
 
 ## devel
 
+## 0.8.3
+
+- Fix templatetags
+
 ## 0.8.2
 
 - Add emoji to email notifications
